@@ -27,7 +27,13 @@
             {topiclist_tab: list.good !== true && list.top !== true}]">
             {{list | tabFormatter}}
           </span>
-          <span class="list_title">{{list.title}}</span>
+          <span class="list_title">
+            <router-link :to="{name: 'post_content', params: {
+              id: list.id
+            }}">
+              {{list.title}}
+            </router-link>
+          </span>
           <span class="last_reply">{{list.last_reply_at | formatDate}}</span>
         </li>
       </ul>
