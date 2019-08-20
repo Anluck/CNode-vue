@@ -15,9 +15,11 @@
       </ul>
       <ul class="listMsg">
         <li v-for="list in lists" class="clearfix">
-          <a href="javascript:;" class="author_img">
-            <img :src="list.author.avatar_url" alt="">
-          </a>
+          <router-link :to="{name: 'userinfo', params: {
+            name: list.author.loginname
+          }}">
+            <img :src="list.author.avatar_url" class="author_img">
+          </router-link>
           <span class="reading">
             <span class="reply_count">{{list.reply_count}}</span>
             <span class="count_seperator">/</span>
@@ -29,7 +31,8 @@
           </span>
           <span class="list_title">
             <router-link :to="{name: 'post_content', params: {
-              id: list.id
+              id: list.id,
+              name: list.author.loginname
             }}">
               {{list.title}}
             </router-link>
@@ -59,6 +62,7 @@
           }
         }).then( (res) => {
           this.isLoading = false
+          // console.log(res.data.data)
           this.lists = res.data.data
         }).catch( (err) => {
           console.log(err)
@@ -127,10 +131,7 @@
   /*ul.listMsg li:last-child{*/
     /*border: none;*/
   /*}*/
-  .author_img{
-    display: inline-block;
-  }
-  .author_img img{
+  img.author_img{
     width: 30px;
     height: 30px;
     border-radius: 2px;

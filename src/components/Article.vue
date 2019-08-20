@@ -70,7 +70,7 @@
           .then( (res) => {
             this.isLoading = false
             this.post = res.data.data
-            console.log(res.data.data)
+            // console.log(res.data.data)
           })
           .catch( (err) => {
             console.log(err)
@@ -126,7 +126,7 @@
   }
   .topic_content{
     border-top: 1px solid #e5e5e5;
-    padding: 0 10px;
+    padding: 10px;
   }
   .topic_content p,
   .markdown-text p{

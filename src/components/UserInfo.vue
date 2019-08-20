@@ -46,7 +46,8 @@
             </router-link>
             <span>
               <router-link :to="{name: 'post_content', params: {
-                id: list.id
+                id: list.id,
+                name: list.author.loginname
               }}">
                 {{list.title}}
               </router-link>
@@ -74,6 +75,7 @@
           .then((res) => {
             this.isLoading = false
             this.userInfo = res.data.data
+            // console.log(res.data.data)
           }).catch((err) => {
             console.log(err)
           });
