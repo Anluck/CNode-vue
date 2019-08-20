@@ -9,7 +9,13 @@
         <div class="topic_title">{{post.title}}</div>
         <ul class="clearfix information">
           <li>• 发布于：{{post.create_at | formatDate}}</li>
-          <li>• 作者：{{post.author.loginname}}</li>
+          <li>• 作者：
+            <router-link :to="{name: 'userinfo', params: {
+              name: post.author.loginname
+            }}">
+              {{post.author.loginname}}
+            </router-link>
+          </li>
           <li>• {{post.visit_count}} 次浏览</li>
           <li>• 来自：{{post | tabFormatter}}</li>
         </ul>
@@ -21,13 +27,21 @@
         </div>
         <div class="replySec" v-for="(reply, index) in post.replies">
           <div class="replyUp clearfix">
-            <img :src="reply.author.avatar_url">
+            <router-link :to="{name: 'userinfo', params: {
+              name: reply.author.loginname
+            }}">
+              <img :src="reply.author.avatar_url">
+            </router-link>
             <div class="user_info">
               <span class="reply_loginname">
-                {{reply.author.loginname}}
+                <router-link :to="{name: 'userinfo', params: {
+                  name: reply.author.loginname
+                }}">
+                  {{reply.author.loginname}}
+                </router-link>
               </span>
               <span>
-                <span>{{index+1}}楼 • {{reply.create_at | formatDate}}</span>
+                <span class="indexAndtime">{{index+1}}楼 • {{reply.create_at | formatDate}}</span>
               </span>
             </div>
             <span class="user_action" v-if="reply.ups.length>0">
@@ -56,6 +70,7 @@
           .then( (res) => {
             this.isLoading = false
             this.post = res.data.data
+            console.log(res.data.data)
           })
           .catch( (err) => {
             console.log(err)
@@ -177,6 +192,9 @@
   .replyContent .replySec .reply_loginname{
     color: #666;
     font-weight: 700;
+  }
+  .replyUp .user_info .indexAndtime{
+    color: #08c;
   }
   .replyContent .replySec .replyMsg{
     margin-left: 40px;
