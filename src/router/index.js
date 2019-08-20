@@ -4,6 +4,7 @@ import PostList from '../components/PostList.vue'
 import Article from '../components/Article.vue'
 import UserInfo from '../components/UserInfo.vue'
 import SlideBar from '../components/SlideBar.vue'
+import LinkBar from '../components/LinkBar.vue'
 
 Vue.use(Router)
 
@@ -28,7 +29,8 @@ export default new Router({
       name: 'userinfo',
       path: '/user/:name',
       components: {
-        main: UserInfo
+        main: UserInfo,
+        linkbar: LinkBar
       }
     }
   ]

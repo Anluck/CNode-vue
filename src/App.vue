@@ -4,6 +4,7 @@
     <div class="main">
       <router-view name="main"></router-view>
       <router-view name="slidebar"></router-view>
+      <router-view name="linkbar"></router-view>
     </div>
   </div>
 </template>
