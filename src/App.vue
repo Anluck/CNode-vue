@@ -6,15 +6,18 @@
       <router-view name="slidebar"></router-view>
       <router-view name="linkbar"></router-view>
     </div>
+    <Footer></Footer>
   </div>
 </template>
 
 <script>
-  import Header from './components/Header'
+  import Header from './components/Header.vue'
+  import Footer from './components/Footer.vue'
   export default {
     name: 'App',
     components: {
-      Header
+      Header,
+      Footer
     }
   }
 </script>

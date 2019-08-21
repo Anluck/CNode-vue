@@ -1,12 +1,16 @@
 <template>
   <div class="header">
     <div class="header_inner clearfix">
-      <img src="../assets/images/cnodejs_light.svg" alt="">
+      <router-link :to="{name: 'root'}">
+        <img src="../assets/images/cnodejs_light.svg" alt="">
+      </router-link>
       <form>
         <input type="text" placeholder="请输入要搜索的内容" class="search">
       </form>
       <ul class="tab">
-        <li><a href="javascript:;">首页</a></li>
+        <li>
+          <router-link :to="{name: 'root'}">首页</router-link>
+        </li>
         <li><a href="javascript:;">新手入门</a></li>
         <li><a href="javascript:;">API</a></li>
         <li><a href="javascript:;">关于</a></li>
