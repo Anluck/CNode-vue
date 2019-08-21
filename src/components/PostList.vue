@@ -40,24 +40,30 @@
           <span class="last_reply">{{list.last_reply_at | formatDate}}</span>
         </li>
       </ul>
+      <Pagination @handleList='handleList'></Pagination>
     </div>
   </div>
 </template>
 
 <script>
+  import Pagination from './Pagination.vue'
   export default {
     name: "PostList",
     data(){
       return {
         isLoading: false,
-        lists: []
+        lists: [],
+        currentPage: 1
       }
+    },
+    components: {
+      Pagination
     },
     methods: {
       getData(){
         this.$http.get('https://cnodejs.org/api/v1/topics', {
           params: {
-            page: 1,
+            page: this.currentPage,
             limit: 30
           }
         }).then( (res) => {
@@ -67,6 +73,10 @@
         }).catch( (err) => {
           console.log(err)
         })
+      },
+      handleList(value){
+        this.currentPage = value
+        this.getData()
       }
     },
     beforeMount(){
